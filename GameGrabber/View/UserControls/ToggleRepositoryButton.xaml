@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="GameGrabber.View.UserControls.ToggleRepositoryButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="30" d:DesignWidth="30"
+             d:MinWidth="30" d:MinHeight="30">
+    <Border Background="#24262E" CornerRadius="3">
+
+        <Button x:Name="btnToggleRepo"
+                Content="🌐"
+                FontSize="12"
+                Background="Transparent"
+                Foreground="#707070"
+                BorderThickness="0"
+                MinWidth="30"
+                MinHeight="30"
+                HorizontalAlignment="Stretch"
+                Click="btnToggleRepo_Click" />
+    </Border>
+</UserControl>

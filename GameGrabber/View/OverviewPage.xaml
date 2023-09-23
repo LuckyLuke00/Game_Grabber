@@ -1,0 +1,89 @@
+﻿<Page x:Class="GameGrabber.View.OverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="clr-namespace:GameGrabber.View.UserControls"
+      xmlns:viewModel="clr-namespace:GameGrabber.ViewModel"
+      mc:Ignorable="d"
+      d:DesignHeight="650" d:DesignWidth="1200"
+      Title="Game Grabber: Overview">
+
+    <Page.DataContext>
+        <viewModel:OverviewVM />
+    </Page.DataContext>
+
+    <Grid Background="#111">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Fill="#1B1D25" />
+
+        <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center"
+                    Orientation="Horizontal" Width="Auto">
+
+                <Button x:Name="btnSortName"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Foreground="#707070"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    Content="{Binding SortByNameText}"
+                    Padding="15"
+                    Command="{Binding SortNameCommand}" />
+
+                <Button x:Name="btnSortValue"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Foreground="#707070"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    Content="{Binding SortByValueText}"
+                    Padding="15"
+                    Command="{Binding SortValueCommand}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center"
+                    Orientation="Horizontal" Width="Auto">
+
+                <userControls:SearchBox Padding="5" />
+                <userControls:ToggleRepositoryButton Width="45" Height="45" Padding="5"
+                                                 HorizontalAlignment="Right" />
+            </StackPanel>
+        </Grid>
+
+        <ListBox x:Name="lstGames" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Games}"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 HorizontalAlignment="Stretch"
+                 Width="Auto"
+                 SelectedItem="{Binding SelectedGame}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0,10" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <userControls:GameCard Width="350" MouseDoubleClick="GameCard_MouseDoubleClick" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>
